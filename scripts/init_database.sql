@@ -14,6 +14,7 @@ WARNING:
 */
 
 -- Create the data-warehouse database
+DROP DATABASE IF EXISTS data_warehouse;
 CREATE DATABASE data_warehouse;
 
 -- Create schemas
