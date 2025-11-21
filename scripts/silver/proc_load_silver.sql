@@ -95,7 +95,7 @@ FROM bronze.crm_sales_details;
 
 
 
-INSERt INTO silver.erp_cust_az12 (
+INSERT INTO silver.erp_cust_az12 (
   cid,
   bdate,
   gen
