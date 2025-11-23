@@ -14,7 +14,7 @@ Usage:
 ===============================================================================
 */
 
-CREATE VIEW gold.dim_customers AS (
+CREATE OR REPLACE VIEW gold.dim_customers AS (
   SELECT
     ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key,
     ci.cst_id AS customer_id,
@@ -35,8 +35,7 @@ CREATE VIEW gold.dim_customers AS (
   ON ci.cst_key = la.cid 
 );
 
-
-CREATE VIEW gold.dim_product AS (
+CREATE OR REPLACE VIEW View gold.dim_product AS (
 SELECT
   ROW_NUMBER() OVER (ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key,
   pn.prd_id AS product_id,
@@ -55,8 +54,7 @@ ON pn.cat_id = pc.id
 WHERE prd_end_dt IS NULL
 );
 
-
-CREATE VIEW gold.fact_sales AS (
+CREATE OR REPLACE VIEW gold.fact_sales AS (
   SELECT
     sd.sls_ord_num AS order_number,
     pr.product_key,
@@ -73,6 +71,4 @@ CREATE VIEW gold.fact_sales AS (
   LEFT JOIN gold.dim_customers AS cu
   ON sd.sls_cust_id = cu.customer_id
 );
-
-
 
